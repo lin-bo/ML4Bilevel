@@ -2,8 +2,7 @@
 # coding: utf-8
 # Author: Bo Lin
 
-from utils.functions import load_file, dump_file, proj2nodes, cal_con_obj, gen_betas, str2list, find_remaining_pairs, des2od
-from utils.instance_generator import  RealInstanceGenerator
+from utils.functions import load_file, str2list
 from embedding.coreset import gen_argument, find_neighbors
 from solver.continuous.benders import BendersSolverOptimalityCut, BendersSolverEquity
 import pandas as pd
@@ -17,9 +16,9 @@ def solve_trt(sn, n_sample, budgets, potential='job'):
     budget_sig = 0
     # load data
     print('loading data ...')
-    args, _  = load_file('./prob/trt/args_adj_ratio.pkl')
-    feature, _ = load_file('./prob/trt/emb/final/emb_ratio.pkl')
-    selected_pairs = str2list(pd.read_csv('./prob/trt/pmedian/archive_rightmedian_wrongemb/sample{}_p{}.csv'.format(sn, n_sample))['medians'].values[-1])
+    args, _ = load_file('./prob/trt/args_adj_ratio.pkl')
+    feature, _ = load_file('./prob/trt/emb/emb_ratio.pkl')
+    selected_pairs = str2list(pd.read_csv('./prob/trt/pmedian/sample{}_p{}.csv'.format(sn, n_sample))['medians'].values[-1])
     # find neighbors
     print('searching for neighbors ...')
     neighbors = find_neighbors(feature, selected_pairs, k=1)
