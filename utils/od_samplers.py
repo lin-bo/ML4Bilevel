@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+# Author: Bo Lin
+
 import numpy as np
 from utils.functions import des2od
 

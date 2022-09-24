@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+# Author: Bo Lin
+
 import functools
 import operator
 from networkx.algorithms.shortest_paths.weighted import single_source_dijkstra_path_length

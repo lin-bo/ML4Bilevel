@@ -6,7 +6,7 @@ This is a repository for [A Machine Learning Approach to Solving Large Bilevel a
 ```
 @article{chan2022machine,
   title={A Machine Learning Approach to Solving Large Bilevel and Stochastic Programs: Application to Cycling Network Design},
-  author={Chan, Timothy C Y and Lin, Bo and Saxe, Shoshanna},
+  author={Chan, Timothy C. Y. and Lin, Bo and Saxe, Shoshanna},
   journal={arXiv preprint arXiv:2209.09404},
   year={2022}
 }

@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+# Author: Bo Lin
+
 from embedding.coreset import greedy_kcenter, PMedianHeuristicSolver
 from utils.od_samplers import naive_sampler
 from utils.functions import dump_file, load_file, str2list, des2od
