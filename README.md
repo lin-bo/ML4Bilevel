@@ -21,6 +21,10 @@ This is a repository for [A Machine Learning Approach to Solving Large Bilevel a
 We provide code to re-produce the case-study results. However, important note that the calculation requires weeks to finish. 
 You can access the pre-calculated results for the first two steps in `./prob/trt/res/job/precalculated/`.
 
+Step 0: download data:
+- Network instances, put the two files under `./prob/trt/`
+- OD pair embedding, put the file under `./prob/trt/emb/`
+
 Step 1: To obtain network designs, run
 ```commandline
 python solve_trt_opt_cmd.py\
