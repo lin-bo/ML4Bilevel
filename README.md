@@ -16,6 +16,15 @@ This is a repository for [A Machine Learning Approach to Solving Large Bilevel a
 
 ## Synthetic Instances
 
+We provide code to re-produce the computational results on the synthetic instances.
+
+Step 0: To initialize the problem instances, run
+```commandline
+python solve_synthetic_init.py
+```
+The code is provided for completeness. You can skip this step. The instances have already been generated and stored in `./prob/6x6-72/`.
+
+
 ## Real Instances
 
 We provide code to re-produce the case-study results. However, important note that the calculation requires weeks to finish. 
