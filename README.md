@@ -2,6 +2,9 @@
 
 This is a repository for [A Machine Learning Approach to Solving Large Bilevel and Stochastic Programs: Application to Cycling Network Design](https://arxiv.org/abs/2209.09404).
 
+
+<img src="./figure/illustration.png" width=1000>
+
 ## Dependencies
 - [Gurobi](https://www.gurobi.com)
 - [Numpy](https://numpy.org)
@@ -11,8 +14,6 @@ This is a repository for [A Machine Learning Approach to Solving Large Bilevel a
 - [tqdm](https://tqdm.github.io)
 - [Scipy](https://scipy.org)
 - [Gensim](https://radimrehurek.com/gensim/)
-
-## Preparation
 
 ## Synthetic Instances
 
