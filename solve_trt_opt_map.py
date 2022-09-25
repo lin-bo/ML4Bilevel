@@ -33,7 +33,6 @@ if __name__ == '__main__':
     # parser
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--sns', nargs='+', type=int, help='series number of the p-median samples in a list')
-    parser.add_argument('-b', '--budget', type=int, help='budget (km * 4)')
     parser.add_argument('--n', type=int, help='number of od pairs in the sample')
     parser.add_argument('--potential', type=str, help='the potential for accessibility calculation, job/populations')
     args = parser.parse_args()

@@ -23,14 +23,14 @@ You can access the pre-calculated results for the first two steps in `./prob/trt
 
 Step 0: download data:
 - Network instances, put the two files under `./prob/trt/`
-- OD pair embedding, put the file under `./prob/trt/emb/`
+- [OD pair embedding](https://utoronto-my.sharepoint.com/:u:/g/personal/imbo_lin_mail_utoronto_ca/EQQs1jV4WjtImJPgiYrEu_EBNblHcy1FECwaNyLwJNY_zw?e=dWge2g), put the file under `./prob/trt/emb/`
 
 Step 1: To obtain network designs, run
 ```commandline
-python solve_trt_opt_cmd.py\
- -s 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41\
- -b 40 80 120 160 200 240 280 320 360 400\
- --n 2000\
+python solve_trt_opt_cmd.py \
+ -s 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 \
+ -b 40 80 120 160 200 240 280 320 360 400 \
+ --n 2000 \
  --potential job  
 ```
 
@@ -40,7 +40,19 @@ and 10 different budgets (10, 20, ..., 100 km) using destination job count as th
 
 Step 2: To calculate the accessibility of each network design, run
 ```commandline
-python 
+python solve_trt_opt_res.py \
+ -s 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 \
+ --n 2000 \
+ --potential job  
+```
+
+Step 3: To generate the shapefile of the network design, run
+```commandline
+python solve_trt_opt_res.py \
+ -s 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 \
+ --n 2000 \
+ --budget 400 \
+ --potential job  
 ```
 
 ## Citation
