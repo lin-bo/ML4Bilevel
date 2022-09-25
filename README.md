@@ -2,6 +2,8 @@
 
 This is a repository for [A Machine Learning Approach to Solving Large Bilevel and Stochastic Programs: Application to Cycling Network Design](https://arxiv.org/abs/2209.09404).
 
+We present a novel machine learning-based approach to solving bilevel programs that involve a large number of independent followers, which as a special case include two-stage stochastic programming. We propose an optimization model that explicitly considers a sampled subset of followers and exploits a machine learning model to estimate the objective values of unsampled followers. Unlike existing approaches, we embed machine learning model training into the optimization problem, which allows us to employ general follower features that can not be represented using leader decisions. We prove bounds on the optimality gap of the generated leader decision as measured by the original objective function that considers the full follower set. We then develop follower sampling algorithms to tighten the bounds and a representation learning approach to learn follower features, which can be used as inputs to the embedded machine learning model. Using synthetic instances of a cycling network design problem, we compare the computational performance of our approach versus baseline methods. Our approach provides more accurate predictions for follower objective values, and more importantly, generates leader decisions of higher quality. Finally, we perform a real-world case study on cycling infrastructure planning, where we apply our approach to solve a network design problem with over one million followers. Our approach presents favorable performance compared to the current cycling network expansion practices.
+
 
 <img src="./figure/illustration.png" width=1000>
 
