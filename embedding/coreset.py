@@ -5,7 +5,6 @@ import gurobipy as gp
 import time
 from tqdm import tqdm
 from utils.functions import load_file
-import multiprocessing
 
 
 class PMedianSolver:
@@ -367,7 +366,7 @@ def gen_argument(args, coreset, neighbors, equity=False, alpha=1, feature=[], po
     # calculate weights
     if len(neighbors) > 0:
         weights = {(orig, des): 0 for orig, des in new_pairs}
-        for i, neighbor in tqdm(enumerate(neighbors)):
+        for i, neighbor in enumerate(neighbors):
             if od_pairs[i] in weights:
                 weights[od_pairs[i]] += pop[od_pairs[i][1]]
             else:
@@ -443,8 +442,12 @@ def find_neighbors(feature, coreset, k):
     else:
         n_chunk = int(len(coreset) // 500)
         s_chunk = int(len(feature) // n_chunk) + int(len(feature) % n_chunk > 0)
-        chunks = [(idx * s_chunk, np.min([(idx + 1) * s_chunk, len(feature)])) for idx in range(n_chunk)]
-        nn_idx = [np.argsort(pairwise_distance(feature[coreset], feature[cs: ce], 'cosine'), axis=0)[:k].T for cs, ce in chunks]
+        # chunks = [(idx * s_chunk, np.min([(idx + 1) * s_chunk, len(feature)])) for idx in range(n_chunk)]
+        # nn_idx = [np.argsort(pairwise_distance(feature[coreset], feature[cs: ce], 'cosine'), axis=0)[:k].T for cs, ce in chunks]
+        nn_idx = []
+        for idx in tqdm(range(n_chunk)):
+            cs, ce = idx * s_chunk, np.min([(idx + 1) * s_chunk, len(feature)])
+            nn_idx.append(np.argsort(pairwise_distance(feature[coreset], feature[cs: ce], 'cosine'), axis=0)[:k].T)
         neighbor_indices = np.concatenate(nn_idx, axis=0)
     neighbors = np.take(coreset, neighbor_indices)
     return neighbors

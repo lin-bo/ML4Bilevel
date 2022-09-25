@@ -8,7 +8,7 @@ import os
 import argparse
 
 
-def sol_summary(potential='job',  n=500, sn=10):
+def eval_sol(potential='job',  n=500, sn=10):
     # load data
     filename = 'efficiency-n{}_id{}'.format(n, sn)
     if os.path.exists('./prob/trt/res/{}/{}.csv'.format(potential, filename)):
@@ -41,6 +41,6 @@ if __name__ == '__main__':
     parser.add_argument('--n', type=int, help='number of od pairs in the sample')
     parser.add_argument('--potential', type=str, help='the potential for accessibility calculation, job/populations')
     args = parser.parse_args()
-    # summarize results
+    # calculate accessibility
     for sn in args.sns:
-        sol_summary(potential=args.potential, n=args.n, sn=sn)
+        eval_sol(potential=args.potential, n=args.n, sn=sn)

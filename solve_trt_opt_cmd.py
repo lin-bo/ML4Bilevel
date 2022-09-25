@@ -22,6 +22,7 @@ def solve_trt(sn, n_sample, budgets, potential='job'):
     # find neighbors
     print('searching for neighbors ...')
     neighbors = find_neighbors(feature, selected_pairs, k=1)
+    print('generate instance of the ml-augmented model')
     args_new = gen_argument(args, selected_pairs, neighbors, potential=potential)
     # running exp
     print('computation starts ...')
