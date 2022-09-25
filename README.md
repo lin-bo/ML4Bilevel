@@ -21,8 +21,8 @@ This is a repository for [A Machine Learning Approach to Solving Large Bilevel a
 We provide code to re-produce the case-study results. However, important note that the calculation requires weeks to finish. 
 You can access the pre-calculated results for the first two steps in `./prob/trt/res/job/precalculated/`.
 
-Step 0: download data:
-- Network instances, put the two files under `./prob/trt/`
+Step 0: Download data:
+- Network instances from [here](https://utoronto-my.sharepoint.com/:u:/g/personal/imbo_lin_mail_utoronto_ca/ER5aFjv_o6NLmkHcgmZbd1kB8OyGxOEDdZiMjNU2TCBS7g?e=dMW3ZY) and [here](https://utoronto-my.sharepoint.com/:u:/g/personal/imbo_lin_mail_utoronto_ca/EXRDjhrFOBZPq5HEExgdJkQBcDzsa4SfognkGR3vRBkUlw?e=f5b1a1), put the two files under `./prob/trt/`
 - [OD pair embedding](https://utoronto-my.sharepoint.com/:u:/g/personal/imbo_lin_mail_utoronto_ca/EQQs1jV4WjtImJPgiYrEu_EBNblHcy1FECwaNyLwJNY_zw?e=dWge2g), put the file under `./prob/trt/emb/`
 
 Step 1: To obtain network designs, run
@@ -48,7 +48,7 @@ python solve_trt_opt_res.py \
 
 Step 3: To generate the shapefile of the network design, run
 ```commandline
-python solve_trt_opt_res.py \
+python solve_trt_opt_map.py \
  -s 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 \
  --n 2000 \
  --budget 400 \
