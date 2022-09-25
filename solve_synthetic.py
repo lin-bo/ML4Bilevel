@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+# Author: Bo Lin
+
 from utils.instance_generator import ClusterGridGenerator
 from embedding.embedding import DeepWalk_variant, DeepWalk_utility, ScenarioSamplerRoute
 from embedding.coreset import gen_argument, gen_argument_prod, find_neighbors, gen_feature_dict
