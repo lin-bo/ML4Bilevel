@@ -24,6 +24,11 @@ python solve_synthetic_init.py
 ```
 The code is provided for completeness. You can skip this step. The instances have already been generated and stored in `./prob/6x6-72/`.
 
+Step 1: To generate the computational results, run
+```commandline
+python solve_synthetic.py --variant linear
+```
+Here, you can change the variant name to use different accessibility measures (linear, exp, rec, and utility)
 
 ## Real Instances
 
@@ -32,7 +37,7 @@ You can access the pre-calculated results for the first two steps in `./prob/trt
 
 Step 0: Download data:
 - Network instances from [here](https://utoronto-my.sharepoint.com/:u:/g/personal/imbo_lin_mail_utoronto_ca/ER5aFjv_o6NLmkHcgmZbd1kB8OyGxOEDdZiMjNU2TCBS7g?e=dMW3ZY) and [here](https://utoronto-my.sharepoint.com/:u:/g/personal/imbo_lin_mail_utoronto_ca/EXRDjhrFOBZPq5HEExgdJkQBcDzsa4SfognkGR3vRBkUlw?e=f5b1a1), put the two files under `./prob/trt/`
-- [OD pair embedding](https://utoronto-my.sharepoint.com/:u:/g/personal/imbo_lin_mail_utoronto_ca/EQQs1jV4WjtImJPgiYrEu_EBNblHcy1FECwaNyLwJNY_zw?e=dWge2g), put the file under `./prob/trt/emb/`
+- OD-pair embedding form [here](https://utoronto-my.sharepoint.com/:u:/g/personal/imbo_lin_mail_utoronto_ca/EQQs1jV4WjtImJPgiYrEu_EBNblHcy1FECwaNyLwJNY_zw?e=dWge2g), put the file under `./prob/trt/emb/`
 
 Step 1: To obtain network designs, run
 ```commandline
