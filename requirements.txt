@@ -1,0 +1,10 @@
+gurobi
+numpy
+pandas
+scikit-learn
+pytorch
+tqdm
+scipy
+gensim
+networkx
+matplotlib
