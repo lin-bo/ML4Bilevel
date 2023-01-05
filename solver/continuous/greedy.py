@@ -25,7 +25,7 @@ class GreedySolver:
                 best_idx = p
         return best_val, new_curr, best_idx
 
-    def solve(self, args, budget):
+    def solve(self, args, budget, region):
         # extract info
         projs = list(range(len(args['projects'])))
         proj_costs = args['project_costs']
@@ -49,7 +49,7 @@ class GreedySolver:
             idx += 1
             records.append((allocated, curr_acc, selected.copy()))
             df = pd.DataFrame(records, columns=['allocated', 'acc', 'selected'])
-            dump_file('./prob/trt/res/greedy_{}.pkl'.format(self.metric), df)
+            dump_file('./prob/trt/res/greedy_{}_{}_{}.pkl'.format(self.metric, budget, region), df)
             print('selected: {}, new acc: {}, metric: {}, allocated: {}'.format(best_idx, curr_acc, best_val, allocated))
 
 
