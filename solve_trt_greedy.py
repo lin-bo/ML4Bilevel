@@ -3,18 +3,18 @@ from utils.instance_generator import RealInstanceGenerator
 import argparse
 
 
-def solve_greedy(budget, metric, region):
+def solve_greedy(budget, metric, region=None):
     # load data
     Generator = RealInstanceGenerator()
     args = Generator.generate(region=region)
     # initialize the solver
-    solver = GreedySolverPar(metric=metric, n_workers=4)
-    solver.solve(args, budget, region)
+    solver = GreedySolverPar(metric=metric, n_workers=4, region=region)
+    solver.solve(args, budget)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--budget', type=int, help='road design budget')
-    parser.add_argument('--region', type=str, help='region name')
+    parser.add_argument('--region', type=str, help='region name', default=None)
     args = parser.parse_args()
     solve_greedy(args.budget, 'abs', args.region)

@@ -7,9 +7,15 @@ import multiprocessing
 
 class GreedySolver:
 
-    def __init__(self, metric='abs'):
+    def __init__(self, metric='abs', region=None):
         self.metric = metric
         self.n_worker = 8
+        # set sub-region suffix
+        if region == None:
+            suffix = ''
+        else:
+            suffix = '_{}'.format(region)
+        self.suffix = suffix
 
     def search(self, projs, args, selected, curr_acc, remained):
         best_val, best_inc, best_idx, new_curr = 0, 0, -1, curr_acc
@@ -25,7 +31,8 @@ class GreedySolver:
                 best_idx = p
         return best_val, new_curr, best_idx
 
-    def solve(self, args, budget, region):
+    def solve(self, args, budget):
+
         # extract info
         projs = list(range(len(args['projects'])))
         proj_costs = args['project_costs']
@@ -49,16 +56,22 @@ class GreedySolver:
             idx += 1
             records.append((allocated, curr_acc, selected.copy()))
             df = pd.DataFrame(records, columns=['allocated', 'acc', 'selected'])
-            dump_file('./prob/trt/res/greedy_{}_{}_{}.pkl'.format(self.metric, budget, region), df)
+            dump_file('./prob/trt/res{}/greedy_{}_{}.pkl'.format(self.suffix, self.metric, budget), df)
             print('selected: {}, new acc: {}, metric: {}, allocated: {}'.format(best_idx, curr_acc, best_val, allocated))
 
 
 class GreedySolverPar:
 
-    def __init__(self, metric='abs', n_workers=8, potential='populations'):
+    def __init__(self, metric='abs', n_workers=8, potential='populations', region=None):
         self.metric = metric
         self.n_workers = n_workers
         self.potential = potential
+        # set sub-region suffix
+        if region == None:
+            suffix = ''
+        else:
+            suffix = '_{}'.format(region)
+        self.suffix = suffix
 
     def search(self, projs, args, selected, curr_acc, remained):
         proj_costs = args['project_costs']
@@ -92,7 +105,7 @@ class GreedySolverPar:
             idx += 1
             records.append((allocated, curr_acc, selected.copy()))
             df = pd.DataFrame(records, columns=['allocated', 'acc', 'selected'])
-            dump_file('./prob/trt/res/greedy_{}_{}_par.pkl'.format(self.metric, self.potential), df)
+            dump_file('./prob/trt/res{}/greedy_{}_{}_par.pkl'.format(self.suffix, self.metric, self.potential), df)
             print('selected: {}, new acc: {}, metric: {}, allocated: {}'.format(best_idx, curr_acc, best_val, allocated))
 
     @staticmethod
