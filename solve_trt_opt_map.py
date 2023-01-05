@@ -15,18 +15,23 @@ def extract_projects(proj2art, projects):
     return arts
 
 
-def gen_proj_shp(n, sn, budget, potential, region):
+def gen_proj_shp(n, sn, budget, potential, region=None):
+    # set sub-region suffix
+    if region == None:
+        suffix = ''
+    else:
+        suffix = '_{}'.format(region)
     filename = 'efficiency-n{}_id{}_summary'.format(n, sn)
     budget_col = 'budget'
     project_col = 'projects'
-    df = pd.read_csv('./prob/trt/res_{}/{}/summary/{}.csv'.format(region, potential, filename))
+    df = pd.read_csv('./prob/trt/res{}/{}/summary/{}.csv'.format(suffix, potential, filename))
     projects = df[df[budget_col] <= budget][project_col].values[-1]
     print('Projects: ', projects)
     df_art = gpd.read_file('./data/trt_arterial/trt_arterial.shp')
-    proj2artidx, _ = load_file('./data/trt_instance/proj2artid_{}.pkl'.format(region))
+    proj2artidx, _ = load_file('./data/trt_instance/proj2artid{}.pkl'.format(suffix))
     art_index = extract_projects(proj2artidx, str2list(projects))
     df_selected = df_art.loc[art_index, :].copy()
-    df_selected.to_file(driver='ESRI Shapefile', filename='./prob/trt/res_{}/shp/{}-budget{}.shp'.format(region, filename, budget))
+    df_selected.to_file(driver='ESRI Shapefile', filename='./prob/trt/res{}/shp/{}-budget{}.shp'.format(suffix, filename, budget))
 
 
 if __name__ == '__main__':
