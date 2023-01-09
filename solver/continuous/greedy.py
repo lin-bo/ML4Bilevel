@@ -105,7 +105,7 @@ class GreedySolverPar:
             idx += 1
             records.append((allocated, curr_acc, selected.copy()))
             df = pd.DataFrame(records, columns=['allocated', 'acc', 'selected'])
-            df.to_csv('./prob/trt/res{}/greedy_{}_{}_{}_par.pkl'.format(self.suffix, self.metric, self.potential, budget), index=False)
+            df.to_csv('./prob/trt/res{}/greedy_{}_{}_{}_par.csv'.format(self.suffix, self.metric, self.potential, budget), index=False)
             print('selected: {}, new acc: {}, metric: {}, allocated: {}'.format(best_idx, curr_acc, best_val, allocated))
 
     @staticmethod
