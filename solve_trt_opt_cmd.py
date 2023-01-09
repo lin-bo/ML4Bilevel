@@ -10,13 +10,18 @@ import os
 import argparse
 
 
-def solve_trt(sn, n_sample, budgets, potential='job'):
+def solve_trt(sn, n_sample, budgets, potential='job', region=None):
+    # set sub-region suffix
+    if region == None:
+        suffix = ''
+    else:
+        suffix = '_{}'.format(region)
     # set params
     ins_name = 'trt'
     budget_sig = 0
     # load data
     print('loading data ...')
-    args, _ = load_file('./prob/trt/args_adj_ratio.pkl')
+    args, _ = load_file('./prob/trt/args_adj_ratio{}.pkl'.format(suffix))
     feature, _ = load_file('./prob/trt/emb/emb_ratio.pkl')
     selected_pairs = str2list(pd.read_csv('./prob/trt/pmedian/sample{}_p{}.csv'.format(sn, n_sample))['medians'].values[-1])
     # find neighbors
@@ -26,7 +31,7 @@ def solve_trt(sn, n_sample, budgets, potential='job'):
     args_new = gen_argument(args, selected_pairs, neighbors, potential=potential)
     # running exp
     print('computation starts ...')
-    path = './prob/{}/res/{}/efficiency-n{}_id{}.csv'.format(ins_name, potential, n_sample, sn)
+    path = './prob/{}/res{}/{}/efficiency-n{}_id{}.csv'.format(ins_name, suffix, potential, n_sample, sn)
     print('\nVarying budget in ', budgets)
     if os.path.exists(path):
         vals = pd.read_csv(path).values.tolist()
@@ -57,7 +62,8 @@ if __name__ == '__main__':
     parser.add_argument('-b', '--budgets', nargs='+', type=int, help='budgets that we want to consider in a list')
     parser.add_argument('--n', type=int, help='number of od pairs in the sample')
     parser.add_argument('--potential', type=str, help='the potential for accessibility calculation, job/populations')
+    parser.add_argument('--region', type=str, help='sub-region to limit projects to', default=None)
     args = parser.parse_args()
     # run experiment
     for sn in args.sns:
-        solve_trt(sn, args.n, args.budgets, potential=args.potential)
+        solve_trt(sn, args.n, args.budgets, potential=args.potential, region=args.region)
