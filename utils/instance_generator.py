@@ -1159,7 +1159,7 @@ class RealInstanceGenerator:
         :param T: float, travel time limit in minute
         :return: dict of instance components
         """
-        path = './prob/trt/args_adj_ratio_%s.pkl' %region
+        path = './prob/trt/args_adj_ratio_{}.pkl'.format(region)
         args, load_succeed = load_file(path)
         if load_succeed:
             if 'job' not in args:
