@@ -1153,13 +1153,18 @@ class RealInstanceGenerator:
     def __init__(self):
         pass
 
-    def generate(self, region, T=30):
+    def generate(self, region=None, T=30):
         """
         generate a MaxANDP instance based on Toronto's road network
         :param T: float, travel time limit in minute
         :return: dict of instance components
         """
-        path = './prob/trt/args_adj_ratio_{}.pkl'.format(region)
+        # set sub-region suffix
+        if region == None:
+            suffix = ''
+        else:
+            suffix = '_{}'.format(region)
+        path = './prob/trt/args_adj_ratio{}.pkl'.format(suffix)
         args, load_succeed = load_file(path)
         if load_succeed:
             if 'job' not in args:
