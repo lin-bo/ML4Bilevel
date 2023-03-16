@@ -1,4 +1,4 @@
-gurobi
+gurobipy
 numpy
 pandas
 scikit-learn
