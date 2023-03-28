@@ -44,7 +44,7 @@ def solve_trt(sn, n_sample, budgets, potential='job'):
         solver = BendersSolverOptimalityCut(ins_name=ins_name, save_model=False, potential=potential)
         new_projects, _, t_uniform, _ = solver.solve(args_new, budget_proj=budget_proj, budget_sig=budget_sig, beta_1=0.001,
                                                      regenerate=True, pareto=True, relax4cut=True, weighted=True, quiet=False,
-                                                     time_limit=10800)
+                                                     time_limit=21600)
         records.append([budget_proj, new_projects, t_uniform])
         df = pd.DataFrame(records, columns=['budget_proj', 'projects', 'time'])
         df.to_csv(path, index=False)

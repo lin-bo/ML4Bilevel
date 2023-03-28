@@ -167,15 +167,14 @@ def random_walk(start, walk_length, weights):
     return walk
 
 
-def build_corpus_one_round(ins_name, walk_length, round_idx, suffix):
-    corpus_path = './prob/{}/emb/corpus{}/corpus_{}'.format(ins_name, suffix, round_idx)
+def build_corpus_one_round(ins_name, walk_length, round_idx, weight_file_name):
+    corpus_path = './prob/{}/emb/corpus/corpus_{}'.format(ins_name, round_idx)
     if os.path.exists(corpus_path):
         print('already generated, loading')
     else:
         print('round {}'.format(round_idx), corpus_path)
-        weights, _ = load_file('./prob/trt/emb/weights{}/weights.pkl'.format(suffix))
+        weights, _ = load_file(f'./prob/trt/emb/weight_ratio/{weight_file_name}.pkl')
         nodes = list(weights.keys())
-        print(len(nodes))
         walks = []
         for n in tqdm(nodes):
             walk = random_walk(n, walk_length, weights)
@@ -187,12 +186,12 @@ def build_corpus_one_round(ins_name, walk_length, round_idx, suffix):
             pickle.dump(walks, f)
 
 
-def build_corpus(ins_name, walk_length, walk_per_node, n_workers=2, suffix=''):
+def build_corpus(ins_name, walk_length, walk_per_node, n_workers, weight_file_name):
     print('start building corpus, number of workers: {}'.format(n_workers))
     # generate parameters for multi-processing
     params = []
     for round_idx in list(range(walk_per_node))[::-1]:
-        params.append((ins_name, walk_length, round_idx, suffix))
+        params.append((ins_name, walk_length, round_idx, weight_file_name))
     pool = multiprocessing.Pool(n_workers)
     _ = pool.starmap(build_corpus_one_round, params)
     pool.close()

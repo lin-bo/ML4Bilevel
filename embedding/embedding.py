@@ -20,13 +20,13 @@ class ScenarioSampler:
         self.weight = weight
 
     def sample_train(self, args, n, ins_name):
-        conn_mat_path = './prob/{}/emb/connection_matrix-p{}-u{}-n{}.pkl'.format(ins_name, self.P, self.U, n)
-        time_mat_path = './prob/{}/emb/time_matrix-p{}-u{}-n{}.pkl'.format(ins_name, self.P, self.U, n)
+        conn_mat_path = './prob/{}/emb/time_matrix/connection_matrix-p{}-u{}-n{}.pkl'.format(ins_name, self.P, self.U, n)
+        time_mat_path = './prob/{}/emb/time_matrix/time_matrix-p{}-u{}-n{}.pkl'.format(ins_name, self.P, self.U, n)
         conn_matrix, time_matrix = self._sample(args, n, conn_mat_path, time_mat_path)
         # save the matrices
         if self.save:
-            with open(conn_mat_path, 'wb') as f:
-                pickle.dump(np.array(conn_matrix), f)
+            # with open(conn_mat_path, 'wb') as f:
+            #     pickle.dump(np.array(conn_matrix), f)
             with open(time_mat_path, 'wb') as f:
                 pickle.dump(np.array(time_matrix), f)
         return conn_matrix, time_matrix
@@ -49,6 +49,7 @@ class ScenarioSampler:
             time_mat_path = './prob/{}/emb/time_matrix/time_matrix-p{}-u{}-chunk{}.pkl'.format(ins_name, self.P, self.U, c)
             conn_matrix, time_matrix = self._sample(args, chunk_size, conn_mat_path, time_mat_path)
             # save the matrices
+            print(time_matrix.shape)
             if self.save:
                 # with open(conn_mat_path, 'wb') as f:
                 #     pickle.dump(np.array(conn_matrix), f)

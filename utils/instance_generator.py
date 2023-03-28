@@ -639,14 +639,14 @@ class RealInstanceGeneratorWoYonge:
         :param T: float, travel time limit in minute
         :return: dict of instance components
         """
-        # path = './prob/trt/args_wo_yonge.pkl'
-        # args, load_succeed = load_file(path)
-        # if load_succeed:
-        #     if 'job' not in args:
-        #         print('loading job data')
-        #         args['job'] = self._load_job()
-        #         dump_file(path, args)
-        #     return args
+        path = './prob/trt/args_wo_yonge.pkl'
+        args, load_succeed = load_file(path)
+        if load_succeed:
+            if 'job' not in args:
+                print('loading job data')
+                args['job'] = self._load_job()
+                dump_file(path, args)
+            return args
         G = self._load_network_nx()
         G = self.change_yonge_lts(G)
         G = self._add_node_feature(G)
@@ -1159,7 +1159,7 @@ class RealInstanceGenerator:
         :param T: float, travel time limit in minute
         :return: dict of instance components
         """
-        path = './prob/trt/args_adj_new.pkl'
+        path = './prob/trt/args.pkl'
         args, load_succeed = load_file(path)
         if load_succeed:
             if 'job' not in args:
