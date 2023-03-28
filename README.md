@@ -74,6 +74,11 @@ python solve_trt_opt_map.py \
 
 ## Training OD pair embeddings
 ```
+# STEP 0: create folders
+mkdir ./prob/trt/emb/time_matrix
+mkdir ./prob/trt/emb/weight_ratio
+mkdir ./prob/trt/emb/corpus
+
 # STEP 1: sample network design scenarios
 python trt_emb_sampler.py --p=500 --u=100 --n=2000
 
