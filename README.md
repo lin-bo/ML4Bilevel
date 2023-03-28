@@ -72,6 +72,19 @@ python solve_trt_opt_map.py \
  --potential job  
 ```
 
+## Training OD pair embeddings
+```
+# STEP 1: sample network design scenarios
+python trt_emb_sampler.py --p=500 --u=100 --n=2000
+
+# STEP 2: build relationship graph
+python trt_emb_relationship_graph_construction.py --p=500 --u=100 --n=2000 --c=1000
+
+# STEP 3: word2vec training
+python trt_emb_train.py --nworkers=8 --weight_file_name=weight-time_matrix-p500-u100-n2000
+
+```
+
 ## Citation
 ```
 @article{chan2022machine,
