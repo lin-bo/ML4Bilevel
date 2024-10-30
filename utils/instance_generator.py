@@ -1011,7 +1011,7 @@ class RealInstanceGeneratorWoYonge:
         edges = []
         fake_intersect = set(list(pd.read_csv('./data/trt_sig_intersect/fake_intersections.csv')['FNODE'].values))
         for fnode, tnode in G.edges():
-            if ((G[fnode][tnode]['lts'] > 2) or (G.nodes[fnode]['lts'] > 2)) and (fnode not in fake_intersect):
+            if (G[fnode][tnode]['lts'] > 2) or ((G.nodes[fnode]['lts'] > 2) and (fnode not in fake_intersect)):
                 cost = 100
             else:
                 cost = G[fnode][tnode]['time']
@@ -1524,7 +1524,7 @@ class RealInstanceGenerator:
         edges = []
         fake_intersect = set(list(pd.read_csv('./data/trt_sig_intersect/fake_intersections.csv')['FNODE'].values))
         for fnode, tnode in G.edges():
-            if ((G[fnode][tnode]['lts'] > 2) or (G.nodes[fnode]['lts'] > 2)) and (fnode not in fake_intersect):
+            if (G[fnode][tnode]['lts'] > 2) or ((G.nodes[fnode]['lts'] > 2) and (fnode not in fake_intersect)):
                 cost = 100
             else:
                 cost = G[fnode][tnode]['time']
